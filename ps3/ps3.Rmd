@@ -296,7 +296,7 @@ knitr::kable(result2)
 words_ls = c('I', 'we', 'American', 'democracy', 'republic', 'Democrat', 'Republican', 
           'free', 'war', 'God', 'God bless', 'Jesus')
 #list of patterns used for regex processing
-pattern_ls = c('[[:space:]]?I[[:space:]]', '[[:space:]]?[wW][eE][[[:space:]]|\']',
+pattern_ls = c('[[:space:]]?I[[[:space:]]|\']', '[[:space:]]?[wW][eE][[[:space:]]|\']',
                'America[n]?', 'democracy|democratic', 'republic', 'Democrat[ic]?',
                'Republican', '[Ff]ree[dom]?', '[Ww]ar[[:space:]]', 
                'God[[:space:]][^[Bb]less]', 'God\t[Bb]less', 'Jesus|Christ|Christian')
@@ -348,9 +348,9 @@ col3 = c(word_stem[[1]][[1]], word_stem[[1]][[2]], word_stem[[2]][[1]], word_ste
 result3 = data.frame(col1, col2, col3) 
 colnames(result3) = c('Words','Candidate','Count')
 
-ggplot(result3, aes(x=Words, y=Count, group=Candidate))+geom_bar(aes(fill = Candidate), position = "dodge", stat="identity") + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + labs(x='Specified Words')
+ggplot(result3, aes(x=reorder(Words, Count), y=Count, group=Candidate))+geom_bar(aes(fill = Candidate), position = "dodge", stat="identity") + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + labs(x='Specified Words')
 ```
-According to the graph, "we" and "I" are the words candidates use most frequently. And the highest winner belongs to Obama with word "We" in 2008 election year. Candidates barely use word like God, Jesus, Christ or Christian. Maybe because America is a country of immigrants, it has diversity in religion beliefs. Only mentioning one religion may exert negative effects on election.
+According to the graph, "we" and "I" are the words candidates use most frequently. And the highest winner belongs to Trump with word "I" in 2016 election year. Candidates barely use word like God, Jesus, Christ or Christian. Maybe because America is a country of immigrants, it has diversity in religion beliefs. Only mentioning one religion may exert negative effects on election.
 
 ##(e) Please include unit tests for your various functions. For the sake of time, you can keep this to a test or two for each function.
 
