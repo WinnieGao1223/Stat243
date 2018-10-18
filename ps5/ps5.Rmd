@@ -8,7 +8,7 @@ output: pdf_document
 ##Problem 1
 ###Linear algebra preparation. Before class on Wednesday October 17, please read the first section of Unit 9 (Numerical Linear Algebra) and answer the following question. (Turn in your answer as part of the problem set, but please do it by Wednesday.) 
 *Ans:*
-$$det(A)=det(\Gamma\Lambda\Gamma^T)=det(\Gamma)*det(\Lambda)*det(\Gamma^T)$$
+$$For\ square\ matrix, det(A)=det(\Gamma\Lambda\Gamma^T)=det(\Gamma)*det(\Lambda)*det(\Gamma^T)$$
 $$Since\ \Gamma\ is\ an\ orthogonal\ matrix,\ so\ det(\Gamma)det(\Gamma^T)=det(\Gamma\Gamma^T)=det(I)=1. $$
 $$Therefore,\ det(A)=det(\Lambda)=\lambda_1\lambda_2..\lambda_n= product\ of\ eigenvalues. $$
 
