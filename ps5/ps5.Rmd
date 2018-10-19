@@ -31,13 +31,14 @@ formatC(var(z), 20, format = 'f')
 formatC(var(x), 20, format = 'f')
 ## [1] "0.60931216345893013386"
 ```
-*Ans:*We have 16 digits of accuracy, since x=z+1e12, 1e12*1e-16=1e-4, so it's only accurate to 4 decimal places. Therefore, when we calculate the variance, we cannot keep the original accuracy.
+*Ans:*We have 16 digits of accuracy. When we calculate the variance, we have to subtract large numbers that are nearly equal (or adding negative and positive numbers of
+the same magnitudesince). The absolute error is of the order approximately 1e-4, so it's only accurate to 4 decimal places. Therefore, when we calculate the variance, we cannot keep the original accuracy.
 
 ##Problem 4
 ###(This problem makes use of ideas from Unit 8, to be covered at the beginning of the week of Oct. 15, so you may need to wait until then to work on this.) Let’s consider parallelization of a simple linear algebra computation. In your answer, you can assume m = n/p is an integer. Assume you have p cores with which to do the computation.
 ####(a)Consider trying to parallelize matrix multiplication, in particular the computation XY where both X and Y are n*n. There are lots of ways we can break up the computations, but let’s keep it simple and consider parallelizing over the columns of Y . Given the considerations we discussed in Unit 8, when you parallelize the matrix multiplication, why might it be better to break up Y into p blocks of m = n/p columns rather than into n individual column-wise computations? Note: I’m not expecting a detailed answer here – a sentence or two is fine.
 
-*Ans:* If we consider parallelizing over the columns of Y, each task should take similar amount of time, it would be better if we preschedule the tasks to each core to reduce communication. 
+*Ans:* If we consider parallelizing over the columns of Y, each task should take similar amount of time, it would be better if we preschedule the tasks to each core to reduce communication.
 
 ####(b)Let’s consider two ways of parallelizing the computation and count (1) the amount of memory used at any single moment in time, when all p cores are doing their calculations, including memory use in storing the result and (2) the communication cost – count the total number of numbers that need to be passed to the workers as well as the numbers passed from the workers back to the master when returning the result. Which approach is better for minimizing memory use and which for minimizing communication?
 - Approach A: divide Y into p blocks of equal numbers of columns, where the first block has columns 1;....;m where m = n/p and so forth. Pass X and the jth submatrix of Y as the jth task out of p total tasks.
